@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-function App (){
-  return <div>
-    ola, mundo!
-  </div>
-}
+import HomeView from './views/homer.view';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <HomeView />
   </React.StrictMode>
 );
 
