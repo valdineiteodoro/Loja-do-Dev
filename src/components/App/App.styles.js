@@ -12,7 +12,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 ` 
-export const Contanier = styled.div`
+export const Container = styled.div`
 width: 734px;
 height: 574px;
 background-color: #ffffff;
