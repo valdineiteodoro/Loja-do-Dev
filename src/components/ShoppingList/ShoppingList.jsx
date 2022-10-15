@@ -3,33 +3,24 @@ import Checkbox from "../../shered/Checkbox"
 import {Wrapper,Title,Array} from "./ShoppingList.styles"
 
 
-  function ShoppingList({title}) {
+  function ShoppingList({title,products,onToggle}) {
     return <Wrapper>
        <Title> 
         {title}:
         </Title> 
 
         <Array>
-       <Checkbox value={true} title="alface"/>       
-       <Checkbox value={true} title="arroz"/>
-       <Checkbox value={true} title="alface"/>       
-       <Checkbox value={true} title="arroz"/>
-       <Checkbox value={true} title="alface"/>       
-       <Checkbox value={true} title="arroz"/>
-       <Checkbox value={true} title="alface"/>       
-       <Checkbox value={true} title="arroz"/>
-       <Checkbox value={true} title="alface"/>       
-       <Checkbox value={true} title="arroz"/>
-       <Checkbox value={true} title="alface"/>       
-       <Checkbox value={true} title="arroz"/>
-       <Checkbox value={true} title="alface"/>       
-       <Checkbox value={true} title="arroz"/>
-       <Checkbox value={true} title="alface"/>       
-       <Checkbox value={true} title="arroz"/>
-
-
+       {
+        products.map(product => 
+        <Checkbox
+        value={product.checked}
+        title={product.name}
+       onClick={() => onToggle(product.id, product.checked, product.name)}
+       /> 
+       )
+      }
         </Array>
          </Wrapper>  
-  }
+        }
 
  export default ShoppingList

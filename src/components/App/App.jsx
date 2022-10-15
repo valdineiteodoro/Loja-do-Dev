@@ -1,4 +1,4 @@
-import React, {useState } from "react"
+import React, {useState,useEffect } from "react"
 import AppContainer from "../AppContainer"
 import AppHeader from "../AppHeader"
 import { Wrapper, Container} from './App.styles'
@@ -10,9 +10,31 @@ import productsMock from "../../mocks/products.json"
 
 
 function App (){
-      const [products, setProducts] = useState(productsMock.products)
+      const colors =["#62CBC6","#00ABAD","#00B5BC","#006073","#004D61"] 
 
-      const colors =["#62CBC6","#00ABAD","#00B5BC","#006073","#004D61"]    
+      const [products, setProducts] = useState(productsMock.products)
+      const[selectedProducts,setSelectedProducts] =useState([])
+      
+        useEffect(()=>{
+          const newSelectedProducts=products
+            .filter(product => product.checked)
+
+
+        setSelectedProducts(newSelectedProducts)
+      
+       },[products])
+
+      function handleToggle(id,checked,name){
+      const newProducts = products.map(product => 
+                 product.id === id
+               ? {...product,checked:!product.checked}
+               : product
+        
+      )
+      
+      setProducts(newProducts)
+      }
+
       
     return <Wrapper>
         <Container>
@@ -21,10 +43,12 @@ function App (){
             left={<ShoppingList
                title="Produtos disponíveis"
                products={products}
+               onToggle={handleToggle}
                />}
             middle={<ShoppingList 
               title="Sua lista de compras"
-              products={products}
+              products={selectedProducts}
+              onToggle={handleToggle}
               />}
             right={<div>
                 estatisticas
